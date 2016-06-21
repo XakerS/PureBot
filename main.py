@@ -2,21 +2,32 @@
 # Импортирование модулей
 
 from random import randint
-from random import choice
+from random import choice as randstr
+import sl4a
 
+# Вывод на экран!
+
+droid = sl4a.Android().makeToast
+echo = droid
+words = ["Привет, добро пожаловать в «PureBot»", "Если найдете баги, то пишите нам", "Приятной игры"]
+for word in words:
+ echo(word + "!")
+ 
 # Глобальные переменные
 
 global not_found
 global prefix
 global inp
+global version
 
 not_found = "Команда не найдена, введите «/help» для просмотра доступных комманд."
 prefix = "[PureBot]"
+version = "Версия: 0.4 - Бета"
 
 # Начало программы
 
 print("Запуск программы...\nПрограмма «PureBot» предназначена для лиц старше 14+  :D")
-print("Разработчики:\n Xaker Su - mcg76\n Максим Удачин - Bruno99\n\nВерсия: 0.2")
+print("Разработчики:\n Xaker Su - mcg76\n Максим Удачин - Bruno99\n\n",version)
 print("-"*50,"\n")
 inp = str(input("Введите комманду: "))
 
@@ -37,24 +48,34 @@ def random(commandsend):
 
 def trueorfalse(commandsend):
  if commandsend == "/tf":
-  words = {
-  	1:"Россия - Это молодая страна?",
-  	1:"Test aaaaaaa?",
-  	2:"Тестовый текст?"
-  	} 
-  ri = randint(1,2)
-  randwords = choice([words[ri]]) 
-  print("\n",randwords)
-  Да = "1"
-  да = "1"
-  Нет = "2"
-  нет = "2"
-  result = input("Выберите ответ «Да» или «Нет»?\nОтвет: ")
-  if result == "1":
-   print("\nИ это...\nПравильный ответ!")
-   #print("\nВаша награда: ",randmoney)
+  true = {0:"В Армении есть интернет?",1:"У русских «Медведь», а у амереканцев «Ястреб»?",2:"Питон - Так называют какой-то язык программирования?",
+  3:"Существует ли такой сериал «ZKD»?",4:"Python - Это язык программирования, который назван в честь цирка Пайтона?"}
+  false = {0:"Обама черный?",1:"ЯП - Это язык педиков? ",2:"Вафля - это еда и имя?",
+  3:"ПК - Это пистолетная кончина?",4:"Создатель minecraft - Шоги?"}
+  keys = {"true":true,"false":false}
+  rint = randint(0,4)
+  rstr1 = randstr([true,false])
+  rstr2 = randstr([rstr1[rint]])
+  print("\n",rstr2)
+  result = input("\n«true» или «false»?\nВаш ответ: ")
+  if true == keys[result]:
+   if rstr2 == true[rint]:
+    print("Правильный ответ и это - ПРАВДА")
+   else:
+    print("Неверно, ответ: ЛОЖ")
+  elif false == keys[result]:
+   if rstr2 == false[rint]:
+    print("Правильный ответ и это - ЛОЖ")
+   else:
+    print("Неверно, ответ: ПРАВДА")
   else:
-   print("Неверный ответ!")
+   print("Вы ввели другой сивмвол в ответе!") 
+   
+# TODO:
+# Правила и информация об игре!
+# Система случайного получения денег:  
+# print("\nВаша награда: ",randmoney)
+# Возможно экономика "БОТовая".
    
 # commands = helps,random,trueorfalse
 # Функция ввода и вывода
